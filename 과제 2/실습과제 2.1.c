@@ -1,8 +1,8 @@
 #include <stdio.h>
 
-#define MAX_ELEMENTS 8  //ÀÚ·á±¸Á¶ ±æÀÌ ¼³Á¤
+#define MAX_ELEMENTS 8  //ìë£Œêµ¬ì¡° ê¸¸ì´ ì„¤ì •
 
-typedef struct Element { //Element ±¸Á¶Ã¼
+typedef struct Element { //Element êµ¬ì¡°ì²´
 	int row;
 	int col;
 	int value;
@@ -13,7 +13,7 @@ void Print_Sparse_Mat(Element arr[]);
 
 int main()
 {
-	Element Sparse_A[MAX_ELEMENTS] = //Èñ¼ÒÇà·Ä A
+	Element Sparse_A[MAX_ELEMENTS] = //í¬ì†Œí–‰ë ¬ A
 	{{6,6,7},
 	{0,2,6},
 	{1,0,5},
@@ -23,21 +23,21 @@ int main()
 	{4,1,9},
 	{5,3,2}};
 
-	Element* S_b = Transpose_Triple1(Sparse_A); //¹İÈ¯µÈ S_b ¹è¿­ ÀúÀå
+	Element* S_b = Transpose_Triple1(Sparse_A); //ë°˜í™˜ëœ S_b ë°°ì—´ ì €ì¥
 
-	printf("Èñ¼ÒÇà·Ä A \n");
-	Print_Sparse_Mat(Sparse_A); //Èñ¼ÒÇà·Ä A Ãâ·Â
-	printf("\nÀüÄ¡Çà·Ä B \n");
-	Print_Sparse_Mat(S_b); //ÀüÄ¡Çà·Ä B Ãâ·Â
+	printf("í¬ì†Œí–‰ë ¬ A \n");
+	Print_Sparse_Mat(Sparse_A); //í¬ì†Œí–‰ë ¬ A ì¶œë ¥
+	printf("\nì „ì¹˜í–‰ë ¬ B \n");
+	Print_Sparse_Mat(S_b); //ì „ì¹˜í–‰ë ¬ B ì¶œë ¥
 
 	return 0;
 }
 
-Element* Transpose_Triple1(Element S_a[]) //Èñ¼ÒÇà·Ä A¸¦ ÀüÄ¡Çà·Ä B·Î º¯È¯ÇÏ´Â ÇÔ¼ö
+Element* Transpose_Triple1(Element S_a[]) //í¬ì†Œí–‰ë ¬ Aë¥¼ ì „ì¹˜í–‰ë ¬ Bë¡œ ë³€í™˜í•˜ëŠ” í•¨ìˆ˜
 {
 	int no = S_a[0].value;
 	
-	static Element S_b[MAX_ELEMENTS] = { {0} }; //static ¶Ç´Â ¸Ş¸ğ¸® µ¿ÀûÇÒ´ç »ç¿ë
+	static Element S_b[MAX_ELEMENTS] = { {0} }; //static ë˜ëŠ” ë©”ëª¨ë¦¬ ë™ì í• ë‹¹ ì‚¬ìš©
 	S_b[0].row = S_a[0].col;
 	S_b[0].col = S_a[0].row;
 	S_b[0].value = no;
@@ -47,7 +47,7 @@ Element* Transpose_Triple1(Element S_a[]) //Èñ¼ÒÇà·Ä A¸¦ ÀüÄ¡Çà·Ä B·Î º¯È¯ÇÏ´Â Ç
 	{
 		for (int j = 0; j <= no; j++)
 		{
-			//ÀüÄ¡Çà·Ä·Î º¯È¯ÇÏ´Â °úÁ¤
+			//ì „ì¹˜í–‰ë ¬ë¡œ ë³€í™˜í•˜ëŠ” ê³¼ì •
 			if (S_a[j].col == i) {
 				S_b[current].row = S_a[j].col;
 				S_b[current].col = S_a[j].row;
@@ -60,7 +60,7 @@ Element* Transpose_Triple1(Element S_a[]) //Èñ¼ÒÇà·Ä A¸¦ ÀüÄ¡Çà·Ä B·Î º¯È¯ÇÏ´Â Ç
 	return S_b;
 }
 
-void Print_Sparse_Mat(Element arr[]) //ÀÚ·á±¸Á¶¸¦ ±âÁ¸ 6x6 ¹è¿­·Î Ãâ·ÂÇÏ´Â ÇÔ¼ö
+void Print_Sparse_Mat(Element arr[]) //ìë£Œêµ¬ì¡°ë¥¼ ê¸°ì¡´ 6x6 ë°°ì—´ë¡œ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 {
 	int row = arr[0].row;
 	int col = arr[0].col;
@@ -68,15 +68,21 @@ void Print_Sparse_Mat(Element arr[]) //ÀÚ·á±¸Á¶¸¦ ±âÁ¸ 6x6 ¹è¿­·Î Ãâ·ÂÇÏ´Â ÇÔ¼ö
 	int current = 1;
 	for (int i = 0; i < row; i++) {
 		for (int j = 0; j < col; j++) {
-			//ÀÚ·á±¸Á¶ÀÇ ¾Ë¸ÂÀº row, col °ª¿¡ À§Ä¡ÇÒ ¶§ value°ª Ãâ·Â
+			//ìë£Œêµ¬ì¡°ì˜ ì•Œë§ì€ row, col ê°’ì— ìœ„ì¹˜í•  ë•Œ valueê°’ ì¶œë ¥
 			if ((arr[current].row == i) && (arr[current].col == j)) {
 				printf("%d ", arr[current].value);
 				current++;
 			}
-			//ºó Ä­Àº 0À» Ãâ·Â
+			//ë¹ˆ ì¹¸ì€ 0ì„ ì¶œë ¥
 			else
 				printf("0 ");
 		}
 		printf("\n");
 	}
 }
+
+
+![ì‹¤í–‰ê²°ê³¼](https://user-images.githubusercontent.com/127213266/225200006-ecc7939b-caac-49ab-a470-649e51b6b3d7.PNG)
+
+	
+ê³¼ì œì— ëŒ€í•œ ê³ ì°°
