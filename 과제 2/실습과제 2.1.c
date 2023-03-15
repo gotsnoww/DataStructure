@@ -80,9 +80,6 @@ void Print_Sparse_Mat(Element arr[]) //자료구조를 기존 6x6 배열로 출�
 		printf("\n");
 	}
 }
-
-
-![실행결과](https://user-images.githubusercontent.com/127213266/225200006-ecc7939b-caac-49ab-a470-649e51b6b3d7.PNG)
-
 	
+
 과제에 대한 고찰
