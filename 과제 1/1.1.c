@@ -1,48 +1,48 @@
 /* 
-ÀÇ»çÄÚµå
+ì˜ì‚¬ì½”ë“œ
 Algorithm Transpose_Mat(int A[][MAT_SZIE], int B[][MAT_SIZE])
-Input : nxn°³ÀÇ Á¤¼ö °ªÀÌ ÀúÀåµÈ ¹è¿­ A, B
+Input : nxnê°œì˜ ì •ìˆ˜ ê°’ì´ ì €ì¥ëœ ë°°ì—´ A, B
 for i <- 0 to MAT_SIZE do
 	for j <- 0 to MAT_SIZE do
 		B[i][j] = A[i][j]
 
 Algorithm Print_MAT(int arr[][MAT_SIZE]);
-Input : nxn°³ÀÇ Á¤¼ö °ªÀÌ ÀúÀåµÈ ¹è¿­
-Output : nxn°³ÀÇ Á¤¼ö °ªÀÌ ÀúÀåµÈ ¹è¿­ÀÇ ÀüÄ¡Çà·Ä
+Input : nxnê°œì˜ ì •ìˆ˜ ê°’ì´ ì €ì¥ëœ ë°°ì—´
+Output : nxnê°œì˜ ì •ìˆ˜ ê°’ì´ ì €ì¥ëœ ë°°ì—´ì˜ ì „ì¹˜í–‰ë ¬
 for i <- 0 to MAT_SIZE do
 	for j <- 0 to MAT_SIZE do
 		arr[i][j]
 
-½Ã°£º¹Àâµµ O(n^2)
+ì‹œê°„ë³µì¡ë„ O(n^2)
 */
 
 #include <stdio.h>
 
-#define MAT_SIZE 5 //±âº» ¼³Á¤ ¹è¿­±æÀÌ
+#define MAT_SIZE 5 //ê¸°ë³¸ ì„¤ì • ë°°ì—´ê¸¸ì´
 
 void Transpose_Mat(int A[][MAT_SIZE], int B[][MAT_SIZE]);
 void Print_MAT(int arr[][MAT_SIZE]);
 
 int main() {
-	int A[5][5] = //ÀÓÀÇÀÇ 5x5 Á¤¼ö·Î ¼³Á¤µÈ ¹è¿­ A
+	int A[5][5] = //ì„ì˜ì˜ 5x5 ì •ìˆ˜ë¡œ ì„¤ì •ëœ ë°°ì—´ A
 	{{3,2,6,4,5},
 	{8,3,5,9,1},
 	{0,3,2,7,9},
 	{2,1,5,2,4},
 	{5,0,8,2,3}};
 
-	int B[5][5] = { 0 }; //AÀÇ ÀüÄ¡Çà·ÄÀ» ´ãÀ» ¹è¿­ B
+	int B[5][5] = { 0 }; //Aì˜ ì „ì¹˜í–‰ë ¬ì„ ë‹´ì„ ë°°ì—´ B
 
-	Transpose_Mat(A, B); //AÀÇ ÀüÄ¡Çà·ÄÀ» ±¸ÇØ¼­ ¹è¿­ B·Î º¹»ç
-	printf("¹è¿­ A \n");
-	Print_MAT(A); //¹è¿­ A Ãâ·Â
-	printf("\n¹è¿­ AÀÇ ÀüÄ¡Çà·Ä ¹è¿­ B \n");
-	Print_MAT(B); //¹è¿­ B Ãâ·Â
+	Transpose_Mat(A, B); //Aì˜ ì „ì¹˜í–‰ë ¬ì„ êµ¬í•´ì„œ ë°°ì—´ Bë¡œ ë³µì‚¬
+	printf("ë°°ì—´ A \n");
+	Print_MAT(A); //ë°°ì—´ A ì¶œë ¥
+	printf("\në°°ì—´ Aì˜ ì „ì¹˜í–‰ë ¬ ë°°ì—´ B \n");
+	Print_MAT(B); //ë°°ì—´ B ì¶œë ¥
 
 	return 0;
 }
 
-//¹è¿­ AÀÇ ÀüÄ¡Çà·ÄÀ» ±¸ÇØ¼­ ¹è¿­ B¿¡ ÀúÀåÇÏ´Â ÇÔ¼ö
+//ë°°ì—´ Aì˜ ì „ì¹˜í–‰ë ¬ì„ êµ¬í•´ì„œ ë°°ì—´ Bì— ì €ì¥í•˜ëŠ” í•¨ìˆ˜
 void Transpose_Mat(int A[][MAT_SIZE], int B[][MAT_SIZE])
 {
 	for (int i = 0; i < MAT_SIZE; i++) {
@@ -52,7 +52,7 @@ void Transpose_Mat(int A[][MAT_SIZE], int B[][MAT_SIZE])
 	}
 }
 
-//¹è¿­ arrÀ» Ãâ·ÂÇÏ´Â ÇÔ¼ö
+//ë°°ì—´ arrì„ ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜
 void Print_MAT(int arr[][MAT_SIZE])
 {
 	for (int i = 0; i < MAT_SIZE; i++) {
