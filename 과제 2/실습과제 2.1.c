@@ -82,4 +82,4 @@ void Print_Sparse_Mat(Element arr[]) //자료구조를 기존 6x6 배열로 출�
 }
 	
 
-과제에 대한 고찰
+과제에 대한 고찰 
