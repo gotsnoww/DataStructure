@@ -73,7 +73,7 @@ void Print_Poly(Term poly[], int As, int Ae, int Bs, int Be, int avail)
 		if(poly[i].expon != 0) //방정식의 지수가 0인경우 계수만 출력하는 조건문
 			printf("%dx^%d", poly[i].coef, poly[i].expon);
 		else
-			printf("%dx", poly[i].coef);
+			printf("%d", poly[i].coef);
 
 		//조건에 따른 +연산자 삽입
 		if (i == Ae || i == Be || i == Ce)
