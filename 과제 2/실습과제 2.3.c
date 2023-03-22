@@ -39,6 +39,8 @@ void Poly_Add(Term poly[], int As, int Ae, int Bs, int Be, int *avail)
 				insert(poly, *avail, sumCoef, poly[As].expon);
 			As++;
 			Bs++;
+			else    //지수는 같지만 A와 B의 계수의 합이 0일 경우 avail의 값 원상 
+				avail -= 1; 
 		}
 		else if (poly[As].expon < poly[Bs].expon) {
 			insert(poly, *avail, poly[Bs].coef, poly[Bs].expon);
