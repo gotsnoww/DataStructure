@@ -49,7 +49,7 @@ void Poly_Add(Term poly[], int As, int Ae, int Bs, int Be, int *avail)
 		*avail += 1;
 	}
 
-	//while문의 조건을 만족하지 못했을 경우 남은 계수와 지수를 삽입
+	//while문을 탈출했을 때 남는 계수와 지수가 있으면 삽입 
 	for (int i = As; i <= Ae; i++) {
 		insert(poly, *avail, poly[i].coef, poly[i].expon);
 		*avail += 1;
@@ -58,7 +58,7 @@ void Poly_Add(Term poly[], int As, int Ae, int Bs, int Be, int *avail)
 		insert(poly, *avail, poly[i].coef, poly[i].expon);
 		*avail += 1;
 	}
-	Ce = *avail -1;
+	Ce = *avail - 1;
 }
 
 //구조체 배열을 이용하여 방정식을 출력하는 함수
