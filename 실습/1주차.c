@@ -12,22 +12,22 @@ typedef struct info_book
 int Inser_book(ib book[100], int n)
 {
 	int i_no;
-	printf("ÇĞ¹ø : ");
+	printf("í•™ë²ˆ : ");
 	scanf("%d", &i_no);
 	book[n].num = i_no;
 
 	char i_name[20];
-	printf("µµ¼­¸í : ");
+	printf("ë„ì„œëª… : ");
 	scanf("%s", i_name);
 	strcpy(book[n].name, i_name);
 
 	int i_rent;
-	printf("´ë¿©ÀÏ : ");
+	printf("ëŒ€ì—¬ì¼ : ");
 	scanf("%d", &i_rent);
 	book[n].rent_day = i_rent;
 
 	int i_return;
-	printf("¹İ³³ÀÏ : ");
+	printf("ë°˜ë‚©ì¼ : ");
 	scanf("%d", &i_return);
 	book[n].return_day = i_return;
 
@@ -40,7 +40,7 @@ void Display(ib b1)
 void Search(ib* book, int n, int select, int value)
 {
 	printf("-----------------------------------\n");
-	printf("%10s%10s%10s%10s\n", "ÇĞ¹ø", "µµ¼­Á¤º¸", "´ë¿©ÀÏ", "¹İ³³ÀÏ");
+	printf("%10s%10s%10s%10s\n", "í•™ë²ˆ", "ë„ì„œì •ë³´", "ëŒ€ì—¬ì¼", "ë°˜ë‚©ì¼");
 	printf("-----------------------------------\n");
 	switch (select)
 	{
@@ -82,9 +82,9 @@ void main()
 	int menu = 1, n = 0, select, value;
 	while (menu)
 	{
-		printf("1:ÀÔ·Â\n2:°Ë»ö\n3:Ãâ·Â\n4:Á¾·á\n");
+		printf("1:ì…ë ¥\n2:ê²€ìƒ‰\n3:ì¶œë ¥\n4:ì¢…ë£Œ\n");
 		printf("----------------------\n");
-		printf("¼±ÅÃ : ");
+		printf("ì„ íƒ : ");
 		scanf("%d", &menu);
 
 		switch (menu)
@@ -94,15 +94,15 @@ void main()
 			break;
 		case 2:
 			printf("----------------------\n");
-			printf("1:ÇĞ¹ø\t2:´ë¿©ÀÏ\t3:¹İ³³ÀÏ\n¼±ÅÃ : ");
+			printf("1:í•™ë²ˆ\t2:ëŒ€ì—¬ì¼\t3:ë°˜ë‚©ì¼\nì„ íƒ : ");
 			scanf("%d", &select);
-			printf("°ª : ");
+			printf("ê°’ : ");
 			scanf("%d", &value);
 			Search(book, n, select, value);
 			break;
 		case 3:
 			printf("-----------------------------------\n");
-			printf("%10s%10s%10s%10s\n", "ÇĞ¹ø", "µµ¼­Á¤º¸", "´ë¿©ÀÏ", "¹İ³³ÀÏ");
+			printf("%10s%10s%10s%10s\n", "í•™ë²ˆ", "ë„ì„œì •ë³´", "ëŒ€ì—¬ì¼", "ë°˜ë‚©ì¼");
 			printf("-----------------------------------\n");
 			for (int i = 0; i < n; i++)
 			{
