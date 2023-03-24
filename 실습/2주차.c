@@ -11,18 +11,18 @@ typedef struct Student
 
 void Insert(Student* stu, int i)
 {
-	printf("ÇĞ¹ø : ");
+	printf("í•™ë²ˆ : ");
 	scanf("%d", &stu[i].no); //&(stu+i)->no
-	printf("ÀÌ¸§ : ");
+	printf("ì´ë¦„ : ");
 	scanf("%s", stu[i].name);
-	printf("Áß°£ : ");
+	printf("ì¤‘ê°„ : ");
 	scanf("%d", &stu[i].mid);
-	printf("±â¸» : ");
+	printf("ê¸°ë§ : ");
 	scanf("%d", &stu[i].fi);
 }
 
 void Display(Student* stu, int n) {
-	printf("%10s%10s%10s%10s\n", "ÇĞ¹ø", "ÀÌ¸§", "Áß°£", "±â¸»");
+	printf("%10s%10s%10s%10s\n", "í•™ë²ˆ", "ì´ë¦„", "ì¤‘ê°„", "ê¸°ë§");
 
 	for (int i = 0; i < n; i++)
 	{
@@ -54,7 +54,7 @@ int main() {
 	int n;
 	Student* stu = NULL;
 
-	printf("ÇĞ»ı ¼ö ÀÔ·Â : ");
+	printf("í•™ìƒ ìˆ˜ ì…ë ¥ : ");
 	scanf("%d", &n);
 	int count = n;
 
@@ -64,19 +64,19 @@ int main() {
 		Insert(stu, i);
 	}
 
-	printf("------------------¿øº»-----------------\n");
+	printf("------------------ì›ë³¸-----------------\n");
 	Display(stu, n);
-	printf("------------------¿øº»-----------------\n");
+	printf("------------------ì›ë³¸-----------------\n");
 	
 	Sort(stu, n);
 
-	printf("------------------¿øº»-----------------\n");
+	printf("------------------ì›ë³¸-----------------\n");
 	Display(stu, n);
-	printf("------------------¿øº»-----------------\n");
+	printf("------------------ì›ë³¸-----------------\n");
 	printf("\n");
 
 	
-	printf("Ãß°¡ ÇĞ»ı : "); //Ãß°¡ ÇĞ»ı ÀÔ·Â
+	printf("ì¶”ê°€ í•™ìƒ : "); //ì¶”ê°€ í•™ìƒ ì…ë ¥
 	scanf("%d", &n);
 
 	int std_num = count + n;
@@ -88,9 +88,9 @@ int main() {
 
 	Sort(stu, std_num);
 
-	printf("------------------¿øº»-----------------\n");
+	printf("------------------ì›ë³¸-----------------\n");
 	Display(stu, std_num);
-	printf("------------------¿øº»-----------------\n");
+	printf("------------------ì›ë³¸-----------------\n");
 
 	return 0;
 }
