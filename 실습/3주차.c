@@ -25,11 +25,11 @@ void insert(H* h, int val) {
 	}
 	else
 	{
-		//newnode ¾Õ¿¡ »ðÀÔÇÏ´Â °æ¿ì
+		//newnode ì•žì— ì‚½ìž…í•˜ëŠ” ê²½ìš°
 		/*newnode->link = h->head;
 		h->head = newnode;*/
 
-		//newnode µÚ¿¡ »ðÀÔÇÏ´Â °æ¿ì
+		//newnode ë’¤ì— ì‚½ìž…í•˜ëŠ” ê²½ìš°
 		h->cur = h->head;
 		while (h->cur->link != NULL)
 			h->cur = h->cur->link;
@@ -40,7 +40,7 @@ void insert(H* h, int val) {
 
 void Display(H* h) {
 	if (h->head == NULL) {
-		printf("¿¬°á¸®½ºÆ®°¡ ¾ø½À´Ï´Ù.\n\n");
+		printf("ì—°ê²°ë¦¬ìŠ¤íŠ¸ê°€ ì—†ìŠµë‹ˆë‹¤.\n\n");
 		return;
 	}
 	
@@ -83,18 +83,18 @@ int main() {
 
 	while (select)
 	{
-		printf("1: »ðÀÔ 2: »èÁ¦ 3: Ãâ·Â 4: °Ë»ö 0: Á¾·á\n ÀÔ·Â: ");
+		printf("1: ì‚½ìž… 2: ì‚­ì œ 3: ì¶œë ¥ 4: ê²€ìƒ‰ 0: ì¢…ë£Œ\n ìž…ë ¥: ");
 		scanf("%d", &select);
 
 		switch (select) {
 		case 1:
-			printf("°ª ÀÔ·Â : ");
+			printf("ê°’ ìž…ë ¥ : ");
 			scanf("%d", &val);
 			printf("\n");
 			insert(h, val);
 			break;
 		case 2:
-			printf("°ª ÀÔ·Â : ");
+			printf("ê°’ ìž…ë ¥ : ");
 			scanf("%d", &val);
 			Delete(h, val);
 			break;
