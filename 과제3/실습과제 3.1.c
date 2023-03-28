@@ -39,11 +39,14 @@ void Destory_Node(Node* node) {
 }
 
 void Append_Node(Node** head, Node* newNode) {
-	if ((*head) = NULL)
-		head = newNode;
+	if ((*head) == NULL)
+		*head = newNode;
 	else {
-		tail = head;
-
+		Node* tail = NULL;
+		tail = *head;
+		while (tail->link != NULL)
+			tail = tail->link;
+		tail->link = newNode;
 	}
 }
 
@@ -53,7 +56,7 @@ void Print_Linked_List(Node* head) {
 	while (iter != NULL) {
 		printf("node[%d]:%d", i, iter->data);
 		iter = iter->link;
-		if (iter != NULL) printf("->");
+		if (iter != NULL) printf(" -> ");
 		i++;
 	}
 	printf("\n");
