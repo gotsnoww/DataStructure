@@ -74,3 +74,19 @@ void Print_Linked_List(Node* head) //연결리스트 출력 함수
 	}
 	printf("\n");
 }
+
+//연결리스트의 역 연결리스트를 구성하는 함수
+Node* Reverse_List(Node* head)
+{
+	Node* p = head;
+	Node* q = NULL;
+	Node* r;
+	while (p != NULL) {
+		r = q;
+		q = p;
+		p = p->link;
+		q->link = r;
+	}
+
+	return q;
+}
