@@ -2,16 +2,17 @@
 #ifndef __MY_LINKED_LIST_H__
 #define __MY_LINKED_LIST_H__
 
-typedef struct Node { //Node ±¸Á¶Ã¼
+typedef struct Node { //Node êµ¬ì¡°ì²´
 	int data;
-	struct Node* link; //´ÙÀ½ ³ëµåÀÇ ÁÖ¼Ò ÀúÀå
+	struct Node* link; //ë‹¤ìŒ ë…¸ë“œì˜ ì£¼ì†Œ ì €ì¥
 } Node;
-Node* Create_Node(int newData); //³ëµå »ı¼º
-void Destory_Node(Node* node);  //³ëµå ¼Ò¸ê
-void Append_Node(Node** head, Node* newNode); //³ëµå Ãß°¡
-Node* Get_Node(Node* head, int pos); //³ëµå Å½»ö
-void Remove_Node(Node** head, Node* targetNode); //³ëµå »èÁ¦
-void Insert_Node_After(Node* currentNode, Node* newNode); //³ëµå »ğÀÔ
-void Print_Linked_List(Node* head); //¿¬°á¸®½ºÆ® Ãâ·Â ÇÔ¼ö
+Node* Create_Node(int newData); //ë…¸ë“œ ìƒì„±
+void Destory_Node(Node* node);  //ë…¸ë“œ ì†Œë©¸
+void Append_Node(Node** head, Node* newNode); //ë…¸ë“œ ì¶”ê°€
+Node* Get_Node(Node* head, int pos); //ë…¸ë“œ íƒìƒ‰
+void Remove_Node(Node** head, Node* targetNode); //ë…¸ë“œ ì‚­ì œ
+void Insert_Node_After(Node* currentNode, Node* newNode); //ë…¸ë“œ ì‚½ì…
+void Print_Linked_List(Node* head); //ì—°ê²°ë¦¬ìŠ¤íŠ¸ ì¶œë ¥
+Node* Reverse_List(Node* head) //ì—­ì—°ê²°ë¦¬ìŠ¤íŠ¸ êµ¬ì„±
 
 #endif
