@@ -16,6 +16,21 @@ void Destory_Node(Node* node) //노드 소멸
 		free(node);
 }
 
+// 기존 Append_Node
+void Append_Node(Node** head, Node* newNode) //노드 추가
+{
+	if ((*head) == NULL)
+		*head = newNode;
+	else {
+		Node* tail = NULL;
+		tail = *head;
+		while (tail->link != NULL)
+			tail = tail->link;
+		tail->link = newNode;
+	}
+}
+
+/*실습과제 4.1 - 1 Append_Node
 void Append_Node(Node** head, Node* newNode) //노드 추가
 {
 	if ((*head) == NULL) {
@@ -30,7 +45,7 @@ void Append_Node(Node** head, Node* newNode) //노드 추가
 		tail->link = newNode;
 		newNode->link = *head;
 	}
-}
+} */
 
 Node* Get_Node(Node* head, int pos) //노드 탐색
 {
@@ -65,6 +80,19 @@ void Insert_Node_After(Node* currentNode, Node* newNode)
 	currentNode->link = newNode;
 }
 
+void Print_Linked_List(Node* head) //연결리스트 출력 함수
+{
+	Node* iter = head;
+	int i = 0;
+	while (iter != NULL) {
+		printf("node[%d]:%d", i, iter->data);
+		iter = iter->link;
+		if (iter != NULL) printf(" -> ");
+		i++;
+	}
+	printf("\n");
+}
+
 void Print_Circular_Linked_List(Node* head) //연결리스트 출력 함수
 {
 	if (head == NULL) return;
@@ -96,6 +124,8 @@ Node* Reverse_List(Node* head)
 	return q;
 }
 
+
+//실습과제 4.1-2
 void Append_Node_T(Node** tail, Node* newNode) {
 	if ((*tail) == NULL) {
 		*tail = newNode;
@@ -120,4 +150,35 @@ void Print_Circular_Linked_List_T(Node* tail) {
 	} while (iter != tail->link);
 	printf("head:%d", iter->data);
 	printf("\n");
+}
+
+//실습과제 4.2
+Node* Merge_List(Node* head_a, Node* head_b) {
+	Node* head_c = NULL;
+
+	while (head_a != NULL && head_b != NULL) {
+		if (head_a->data < head_b->data) {
+			Append_Node(&head_c, Create_Node(head_a->data));
+			head_a = head_a->link;
+		}
+		else {
+			Append_Node(&head_c, Create_Node(head_b->data));
+			head_b = head_b->link;
+		}
+	}
+
+	//연결리스트 a의 잔여항 처리
+	while (head_a != NULL)
+	{
+		Append_Node(&head_c, Create_Node(head_a->data));
+		head_a = head_a->link;
+	}
+	//연결리스트 b의 잔여항 처리
+	while (head_a != NULL)
+	{
+		Append_Node(&head_c, Create_Node(head_b->data));
+		head_b = head_b->link;
+	}
+
+	return head_c;
 }

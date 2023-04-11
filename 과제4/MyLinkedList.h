@@ -12,10 +12,14 @@ void Append_Node(Node** head, Node* newNode); //노드 추가
 Node* Get_Node(Node* head, int pos); //노드 탐색
 void Remove_Node(Node** head, Node* targetNode); //노드 삭제
 void Insert_Node_After(Node* currentNode, Node* newNode); //노드 삽입
+void Print_Linked_List(Node* head);
 void Print_Circular_Linked_List(Node* head); //연결리스트 출력 함수
 Node* Reverse_List(Node* head); //역 연결리스트 구현 함수
 
 void Append_Node_T(Node** tail, Node* newNode);
 void Print_Circular_Linked_List_T(Node* tail);
+
+//두 개의 연결리스트를 하나의 연결리스트로 합병하는 함수
+Node* Merge_List(Node* head_a, Node* head_b);
 
 #endif
