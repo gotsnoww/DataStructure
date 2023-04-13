@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#define SIZE 5
+#define SIZE 3
 
 void Display(int* stack, int top) {
 	for (int k = SIZE-1; k >= 0; k--) {
@@ -54,27 +54,85 @@ int POP(int* stack, int* top) {
 	return temp;
 	//= return stack[(*top)--];
 }
+//------------------------------------------------
+typedef int element;
+typedef struct StackNode
+{
+	element data;
+	struct StackNode* link;
+} StackNode;
+
+void push(element item, StackNode** top)
+{
+	StackNode* temp = (StackNode*)malloc(sizeof(StackNode));
+	temp->data = item;
+	temp->link = *top;
+	*top = temp;
+}
+
+element pop(StackNode** top)
+{
+	if (*top == NULL) 
+		printf("스택이 비었습니다.\n");
+
+	StackNode* temp = *top;
+	temp = *top;
+	element item = temp->data;
+	*top = (*top)->link;
+	free(temp);
+	return item;
+}
+
+element peek(StackNode* top)
+{
+	if (top != NULL) {
+		return top->data;
+	}
+	else 
+		printf("스택이 비었습니다.\n");
+}
+
+void StackNode_Display(StackNode* top)
+{
+	if (top == NULL) {
+		printf("스택이 비었습니다.\n");
+		return;
+	}
+	
+	StackNode* temp = top;
+	while (temp != NULL) {
+		printf("ㅣ    %2d     ㅣ\n", temp->data);
+		temp = temp->link;
+	}
+	printf(" -------------\n");
+}
 
 int main() {
 	srand(time(NULL));
-	int stack[SIZE];
-	int top = -1, data;
-
-	for (int k = 0; k <= SIZE; k++) {
-		PUSH(stack, &top, rand() % 99 + 1);
+	StackNode* top = NULL;
+	element data;
+	
+	//StackNode에 data push
+	for (int i = 0; i < 3; i++) {
+		element item = rand() % 10 + 1;
+		push(item, &top);
+		StackNode_Display(top);
+		data = peek(top);
+		printf("top : %d\n\n", data);
 	}
 
-	for (int k = 0; k <= SIZE; k++) {
-		data = POP(stack, &top);
-		if (data != -1) {
-			printf("POP : %d\n", data);
+	//StackNode의 data pop
+	for (int i = 0; i < SIZE; i++) {
+		data = pop(&top);
+		StackNode_Display(top);
+		printf("pop : %d", data);
+		if (i != SIZE - 1) {
+			data = peek(top);
+			printf(", top : %d\n\n", peek(top));
 		}
-		Display(stack, top);
 	}
 
-	for (int k = 0; k <= SIZE; k++) {
-		PUSH(stack, &top, rand() % 99 + 1);
-	}
-
+	printf("\n");
+	
 	return 0;
 }
