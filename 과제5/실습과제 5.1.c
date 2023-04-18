@@ -4,20 +4,20 @@
 int main(void) {
 	ArrStack stack;
 
-	//½ºÅÃ ÃÊ±âÈ­
+	//ìŠ¤íƒ ì´ˆê¸°í™”
 	Stack_Init(&stack);
 
-	//µ¥ÀÌÅÍ »ğÀÔ
+	//ë°ì´í„° ì‚½ì…
 	Stack_Push(&stack, 5);
 	Stack_Push(&stack, 7);
 	Stack_Push(&stack, 8);
 	Stack_Push(&stack, 9);
 	Stack_Push(&stack, 2);
 
-	//top µ¥ÀÌÅÍ È®ÀÎ
+	//top ë°ì´í„° í™•ì¸
 	printf("top: %d\n", Stack_Peek(&stack));
 
-	//µ¥ÀÌÅÍ ÀÎÃâ
+	//ë°ì´í„° ì¸ì¶œ
 	while (!Stack_IsEmpty(&stack)) {
 		printf("%d\n", Stack_Pop(&stack));
 	}
