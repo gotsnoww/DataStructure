@@ -62,7 +62,7 @@ typedef struct StackNode
 	struct StackNode* link;
 } StackNode;
 
-void push(element item, StackNode** top)
+void push(element item, StackNode** top) //push 함수 
 {
 	StackNode* temp = (StackNode*)malloc(sizeof(StackNode));
 	temp->data = item;
@@ -70,9 +70,9 @@ void push(element item, StackNode** top)
 	*top = temp;
 }
 
-element pop(StackNode** top)
+element pop(StackNode** top) //pop 함수
 {
-	if (*top == NULL) 
+	if (*top == NULL)
 		printf("스택이 비었습니다.\n");
 
 	StackNode* temp = *top;
@@ -115,7 +115,7 @@ int main() {
 	//StackNode에 data push
 	for (int i = 0; i < 3; i++) {
 		element item = rand() % 10 + 1;
-		push(item, &top);
+		push(item, top);
 		StackNode_Display(top);
 		data = peek(top);
 		printf("top : %d\n\n", data);
@@ -123,7 +123,7 @@ int main() {
 
 	//StackNode의 data pop
 	for (int i = 0; i < SIZE; i++) {
-		data = pop(&top);
+		data = pop(top);
 		StackNode_Display(top);
 		printf("pop : %d", data);
 		if (i != SIZE - 1) {
