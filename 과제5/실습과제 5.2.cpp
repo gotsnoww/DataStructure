@@ -1,3 +1,74 @@
+//MyArrayStack.hpp
+#pragma once
+#ifndef __MY_ARRAY_STACKK_HPP__
+#define __MY_ARRAY_STACKK_HPP__
+#include <stdio.h>
+#include <stdlib.h>
+#define STACK_LEN 100
+template <typename T> //í…œí”Œë¦¿
+class ArrStack { //í´ë˜ìŠ¤ ì„ ì–¸
+private:
+	T* arr;
+	int length;
+	int top;
+public:
+	ArrStack() { //ìƒì„±ì
+		top = -1;
+		length = STACK_LEN;
+		arr = new T[STACK_LEN];
+	}
+	ArrStack(int len) {
+		top = -1;
+		length = len;
+		arr = new T[len];
+	}
+	void Stack_Init() //ìŠ¤íƒ ì´ˆê¸°í™”
+	{
+		top = -1;
+	}
+	void Stack_Push(T item) //ë°ì´í„° ì‚½ì…
+	{
+		if (Stack_IsFull() == false) {
+			top += 1;
+			arr[top] = item;
+		}
+		else
+			exit(1);
+	}
+	T Stack_Pop() //ë°ì´í„° ì¸ì¶œ
+	{
+		if (Stack_IsEmpty() == true)
+			exit(1);
+		else
+			top -= 1;
+
+		return arr[top + 1];
+	}
+	T Stack_Peek() //ìµœìƒë‹¨ ë°ì´í„° í™•ì¸
+	{
+		if (Stack_IsEmpty() == true)
+			exit(1);
+		else
+			return arr[top];
+	}
+	bool Stack_IsEmpty() //ìŠ¤íƒì´ ë¹„ì–´ìˆëŠ”ì§€ í™•ì¸
+	{
+		if (top == -1)
+			return true;
+		else
+			return false;
+	}
+	bool Stack_IsFull() //ìŠ¤íƒì´ ê°€ë“ ì°¨ ìˆëŠ”ì§€ í™•ì¸
+	{
+		if (top == 99)
+			return true;
+		else
+			return false;
+	}
+}; 
+#endif
+
+//main.c
 #include <iostream>
 #include <string>
 #include "MyArrayStackk.hpp"
@@ -10,20 +81,20 @@ int Priority(char op);
 int Eval_Postfix(char* postfix_exp);
 
 int main() {
-	char exp[] = "(2+5)*(3+4)-(2+(7-5))"; //ÁßÀ§½Ä
-	char* postfix = new char[strlen(exp) + 1]; //ÈÄÀ§½Ä º¯È¯ °á°ú
-	//1) ÁßÀ§½Ä¿¡¼­ ÈÄÀ§½ÄÀ¸·Î º¯È¯
+	char exp[] = "(2+5)*(3+4)-(2+(7-5))"; //ì¤‘ìœ„ì‹
+	char* postfix = new char[strlen(exp) + 1]; //í›„ìœ„ì‹ ë³€í™˜ ê²°ê³¼
+	//1) ì¤‘ìœ„ì‹ì—ì„œ í›„ìœ„ì‹ìœ¼ë¡œ ë³€í™˜
 	Infix2Postfix(exp, postfix);
 	printf("Infix: %s\n", exp);
 	printf("Postfix: %s\n", postfix);
-	//2) º¯È¯µÈ ÈÄÀ§½ÄÀ» °è»ê
+	//2) ë³€í™˜ëœ í›„ìœ„ì‹ì„ ê³„ì‚°
 	int result = Eval_Postfix(postfix);
 	printf("%s = %d \n", postfix, result);
 
 	return 0;
 }
 
-//ÁßÀ§½Ä -> ÈÄÀ§½Ä º¯È¯ ÇÔ¼ö
+//ì¤‘ìœ„ì‹ -> í›„ìœ„ì‹ ë³€í™˜ í•¨ìˆ˜
 void Infix2Postfix(const char* infix_exp, char* postfix_exp)
 {
 	ArrStack<char> stack;
@@ -34,11 +105,11 @@ void Infix2Postfix(const char* infix_exp, char* postfix_exp)
 	for (int j = 0; j < len; j++) {
 		token = infix_exp[j];
 
-		if (IsDigit(token) == 1) { //tokenÀÌ ÇÇ¿¬»êÀÚÀÏ ¶§
+		if (IsDigit(token) == 1) { //tokenì´ í”¼ì—°ì‚°ìì¼ ë•Œ
 			postfix_exp[i] = token;
 			i++;
 		}
-		else if (IsOperator(token) == 2) { //tokenÀÌ ¿¬»êÀÚÀÏ ¶§
+		else if (IsOperator(token) == 2) { //tokenì´ ì—°ì‚°ìì¼ ë•Œ
 			while (!stack.Stack_IsEmpty() && Priority(token) <= Priority(stack.Stack_Peek()))
 			{
 				postfix_exp[i] = stack.Stack_Pop();
@@ -47,44 +118,45 @@ void Infix2Postfix(const char* infix_exp, char* postfix_exp)
 
 			stack.Stack_Push(token);
 		}
-		else if (token == '(')
+		else if (token == '(') //tokenì´ ( ì¼ ë•Œ
 			stack.Stack_Push(token);
-		else if (token == ')') {
+		else if (token == ')') { //tokenì´ )ì¼ ë•Œ
 			while (stack.Stack_Peek() != '(') {
 				postfix_exp[i] = stack.Stack_Pop();
 				i++;
 			}
-			stack.Stack_Pop(); //½ºÅÃ¿¡ ÀúÀåµÈ ')' pop
+			stack.Stack_Pop(); //ìŠ¤íƒì— ì €ì¥ëœ ')' pop
 		}
 	}
 
-	//stack¿¡ ³²¾Æ ÀÖ´Â ¿¬»êÀÚ Ãâ·Â
+	//stackì— ë‚¨ì•„ ìˆëŠ” ì—°ì‚°ì ì¶œë ¥
 	while (!stack.Stack_IsEmpty()) {
 		postfix_exp[i] = stack.Stack_Pop();
 		i++;
 	}
 	postfix_exp[i] = NULL;
 }
-int IsDigit(char token) //tokenÀÌ ¼ıÀÚÀÎÁö È®ÀÎ
+int IsDigit(char token) //tokenì´ ìˆ«ìì¸ì§€ í™•ì¸
 {
-	//tokenÀÌ 0~9»çÀÌÀÇ ¼ıÀÚÀÌ¸é ¼ıÀÚ 1 ¹İÈ¯
-	for (int i = 48; i <= 57; i++) { //ascii ÄÚµå Ç¥ ÀÌ¿ë
+	//tokenì´ 0~9ì‚¬ì´ì˜ ìˆ«ìì´ë©´ ìˆ«ì 1 ë°˜í™˜
+	for (int i = 48; i <= 57; i++) { //ascii ì½”ë“œ í‘œ ì´ìš©
 		if (token == i)
 			return 1;
 	}
 
 	return -1;
 }
-int IsOperator(char token) //tokenÀÌ ¿¬»êÀÚÀÎÁö È®ÀÎ
+int IsOperator(char token) //tokenì´ ì—°ì‚°ìì¸ì§€ í™•ì¸
 {
-	//tokenÀÌ ¿¬»êÀÚ¶ó¸é ¼ıÀÚ 2 ¹İÈ¯
+	//tokenì´ ì—°ì‚°ìë¼ë©´ ìˆ«ì 2 ë°˜í™˜
 	if (token == 42 || token == 43 || token == 45 || token == 47)
 		return 2;
 
 	return -1;
 }
-int Priority(char op) //¿¬»êÀÚÀÇ ¿ì¼±¼øÀ§ È®ÀÎ
+int Priority(char op) //ì—°ì‚°ìì˜ ìš°ì„ ìˆœìœ„ í™•ì¸
 {
+	//ìš°ì„ ìˆœìœ„ ìˆœìœ¼ë¡œ ë†’ì€ ìˆ«ì í• ë‹¹
 	char pri;
 	switch (op) {
 	case '*':
@@ -104,7 +176,7 @@ int Priority(char op) //¿¬»êÀÚÀÇ ¿ì¼±¼øÀ§ È®ÀÎ
 
 	return pri;
 }
-int Eval_Postfix(char* postfix_exp) //ÈÄÀ§½Ä °è»ê ¹× °á°ú
+int Eval_Postfix(char* postfix_exp) //í›„ìœ„ì‹ ê³„ì‚° ë° ê²°ê³¼
 {
 	ArrStack<char> stack;
 	
@@ -113,14 +185,14 @@ int Eval_Postfix(char* postfix_exp) //ÈÄÀ§½Ä °è»ê ¹× °á°ú
 	int op1, op2, result;
 	for (int i = 0; i < len; i++) {
 		token = postfix_exp[i];
-		if (IsDigit(token) == 1) { //tokenÀÌ ÇÇ¿¬»êÀÚÀÎ °æ¿ì
+		if (IsDigit(token) == 1) { //tokenì´ í”¼ì—°ì‚°ìì¸ ê²½ìš°
 			token = token - '0';
 			stack.Stack_Push(token);
 		}
-		else if (IsOperator(token) == 2) { //tokenÀÌ ¿¬»êÀÚÀÎ °æ¿ì
+		else if (IsOperator(token) == 2) { //tokenì´ ì—°ì‚°ìì¸ ê²½ìš°
 			op2 = stack.Stack_Pop();
 			op1 = stack.Stack_Pop();
-			switch (token) { //¿¬»êÀÚ¿¡ µû¸¥ ¿¬»ê
+			switch (token) { //ì—°ì‚°ìì— ë”°ë¥¸ ì—°ì‚°
 			case '+': 
 				result = op1 + op2; break;
 			case '-':
@@ -136,3 +208,14 @@ int Eval_Postfix(char* postfix_exp) //ÈÄÀ§½Ä °è»ê ¹× °á°ú
 
 	return stack.Stack_Pop();
 }
+
+
+- ê³¼ì œì— ëŒ€í•œ ê³ ì°°
+ì´ì „ ê³¼ì œì™€ ë™ì¼í•œ ë°°ì—´ ìŠ¤íƒì„ ì‚¬ìš©í•˜ì—¬ ì¤‘ìœ„ì‹ì„ í›„ìœ„ì‹ìœ¼ë¡œ ë³€í™˜í•˜ì—¬ ê³„ì‚°í•˜ëŠ” ì½”ë“œë¥¼ êµ¬í˜„í•˜ì˜€ë‹¤.
+ëŒ€ì‹  ë‹¤ë¥¸ì ì€ êµ¬ì¡°ì²´ê°€ ì•„ë‹Œ c++ì˜ classê°€ ì‚¬ìš©ë˜ì—ˆë‹¤.
+ê³¼ì œ 5.1ì—ì„œ ì‚¬ìš©í–ˆë˜ í•¨ìˆ˜ëŠ” ê·¸ëŒ€ë¡œ classì˜ public ê³µê°„ì— ë©¤ë²„ í•¨ìˆ˜ë¡œ êµ¬í˜„í•˜ì˜€ë‹¤.
+ë©”ì¸í•¨ìˆ˜ì—ì„œëŠ” ì¤‘ìœ„ì‹ì„ í›„ìœ„ì‹ìœ¼ë¡œ ë³€í™˜í•˜ëŠ” í•¨ìˆ˜ì™€ í›„ìœ„ì‹ì„ ê³„ì‚°í•˜ê³  ì¶œë ¥í•˜ëŠ” í•¨ìˆ˜ê°€ ì£¼ê°€ ë˜ì–´ ë™ì‘í•œë‹¤.
+ë¶€ê°€ì ì¸ í•¨ìˆ˜ë¡œëŠ” ì—°ì‚°ìì˜ ìš°ì„ ìˆœìœ„ íŒë‹¨, tokenì˜ ê°’ì´ ì—°ì‚°ìì¸ì§€ ì •ìˆ˜ì¸ì§€ íŒë‹¨í•˜ëŠ” í•¨ìˆ˜ê°€ ì¡´ì¬í•œë‹¤.
+ì´ë ‡ê²Œ ë™ì‘í•˜ëŠ” í”„ë¡œê·¸ë¨ì˜ ìˆ˜í–‰ê³µê°„ê³¼ ìˆ˜í–‰ì‹œê°„ì€ ì¤‘ìœ„ì‹ì˜ ê¸¸ì´ì— ë¹„ë¡€í•œë‹¤.
+ì´ë²ˆ ê³¼ì œ ë˜í•œ ì´ì „ ê³¼ì œì™€ ê°™ì´ ë°°ì—´ì„ ì´ìš©í•œ ìŠ¤íƒ ìë£Œêµ¬ì¡°ì´ê¸° ë•Œë¬¸ì—, ì‚¬ìš©ìê°€ ì§ì ‘ ì¤‘ìœ„ì‹ì˜ ê¸¸ì´ì— ë”°ë¼
+ë°°ì—´ì˜ í¬ê¸°ë¥¼ ì§€ì •í•´ì¤˜ì•¼ í•œë‹¤ëŠ” ë‹¨ì ì´ ì¡´ì¬í•œë‹¤.
