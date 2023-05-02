@@ -2,7 +2,7 @@
 #include <cmath>
 using namespace std;
 
-//tree Ãâ·Â ÇÔ¼ö
+//tree ì¶œë ¥ í•¨ìˆ˜
 void PrintTree2Matrix(int** M, int* bTree, int size, int idx, int col, int row, int height) {
 	if (idx > size) return;
 	M[row][col] = bTree[idx];
@@ -41,9 +41,9 @@ void TreePrinter(int* bTree, int size) {
 	printf("\n");
 }
 
-//tree Node Ãâ·Â ÇÔ¼ö
+//tree Node ì¶œë ¥ í•¨ìˆ˜
 void PrintAncestor(int* bTree, int size, int idx) {
-	printf("%dÀÇ ¸ğµç Á¶»ó ³ëµå: ", bTree[idx]);
+	printf("%dì˜ ëª¨ë“  ì¡°ìƒ ë…¸ë“œ: ", bTree[idx]);
 
 	int p = idx;
 	while (p > 1) {
@@ -53,7 +53,7 @@ void PrintAncestor(int* bTree, int size, int idx) {
 	printf("\n");
 }
 void PrintLeftDescendant(int* bTree, int size, int idx) {
-	printf("%dÀÇ ¸ğµç ¿ŞÂÊ ÈÄ¼Õ ³ëµå: ", bTree[idx]);
+	printf("%dì˜ ëª¨ë“  ì™¼ìª½ í›„ì† ë…¸ë“œ: ", bTree[idx]);
 
 	int height = log2(size+1);
 	int ls = idx;
@@ -65,7 +65,7 @@ void PrintLeftDescendant(int* bTree, int size, int idx) {
 	printf("\n");
 }
 void PrintRightDescendant(int* bTree, int size, int idx) {
-	printf("%dÀÇ ¸ğµç ¿À¸¥ÂÊ ÈÄ¼Õ ³ëµå: ", bTree[idx]);
+	printf("%dì˜ ëª¨ë“  ì˜¤ë¥¸ìª½ í›„ì† ë…¸ë“œ: ", bTree[idx]);
 	int height = log2(size + 1);
 	int rs = idx;
 
@@ -94,7 +94,7 @@ int main() {
 	PrintLeftDescendant(full_bTree, size, 1);
 	PrintRightDescendant(full_bTree, size, 1);
 
-	printf("%d ³ëµåÀÇ ÀÎµ¦½º´Â %d ÀÔ´Ï´Ù. \n", 30, FindNode(full_bTree, size, 30));
+	printf("%d ë…¸ë“œì˜ ì¸ë±ìŠ¤ëŠ” %d ì…ë‹ˆë‹¤. \n", 30, FindNode(full_bTree, size, 30));
 
 	return 0;
 }
