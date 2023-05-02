@@ -5,11 +5,11 @@ using namespace std;
 int main(void) {
 	CircularQueue<int> q;
 
-	//µ¥ÀÌÅÍ »ğÀÔ
+	//ë°ì´í„° ì‚½ì…
 	q.Enqueue(5); q.Enqueue(33);
 	q.Enqueue(25); q.Enqueue(17);
 
-	//ÀüÃ¼ µ¥ÀÌÅÍ ÀÎÃâ
+	//ì „ì²´ ë°ì´í„° ì¸ì¶œ
 	while (q.IsEmpty() == false) {
 		printf("%d ", q.Dequeue());
 	}
