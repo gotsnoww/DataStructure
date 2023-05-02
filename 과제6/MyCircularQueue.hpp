@@ -4,10 +4,10 @@
 template <typename T>
 class CircularQueue {
 private:
-	int front; //µ¥ÀÌÅÍ ½ÃÀÛ À§Ä¡(-1)
-	int rear; //µ¥ÀÌÅÍ ¸¶Áö¸· À§Ä¡
-	T* arr; //Å¥ÀÇ ½ÇÁúÀû µ¥ÀÌÅÍ ÀúÀå °ø°£
-	int qSize; //Å¥ÀÇ ±æÀÌ¸¦ ÀúÀå
+	int front; //ë°ì´í„° ì‹œì‘ ìœ„ì¹˜(-1)
+	int rear; //ë°ì´í„° ë§ˆì§€ë§‰ ìœ„ì¹˜
+	T* arr; //íì˜ ì‹¤ì§ˆì  ë°ì´í„° ì €ì¥ ê³µê°„
+	int qSize; //íì˜ ê¸¸ì´ë¥¼ ì €ì¥
 public:
 	CircularQueue() {
 		front = -1;
@@ -21,32 +21,32 @@ public:
 		arr = new T[size];
 		qSize = size;
 	}
-	bool IsEmpty() {  //Å¥°¡ ºñ¾î ÀÖ´ÂÁö È®ÀÎ
+	bool IsEmpty() {  //íê°€ ë¹„ì–´ ìˆëŠ”ì§€ í™•ì¸
 		if (front == rear)
 			return true;
 		else
 			return false;
 	}
-	bool IsFull() {  //Å¥°¡ °¡µæ Â÷ ÀÖ´ÂÁö È®ÀÎ
+	bool IsFull() {  //íê°€ ê°€ë“ ì°¨ ìˆëŠ”ì§€ í™•ì¸
 		if (front == ((rear + 1) % QUEUE_SIZE))
 			return true;
 		else
 			return false;
 	}
-	bool Enqueue(T item) {  //Å¥¿¡ µ¥ÀÌÅÍ¸¦ »ğÀÔ
+	bool Enqueue(T item) {  //íì— ë°ì´í„°ë¥¼ ì‚½ì…
 		if(IsFull() == true)
 			return false;
 		rear = (rear + 1) % QUEUE_SIZE;
 		arr[rear] = item;
 	}
-	T Dequeue() {  //Å¥¿¡¼­ µ¥ÀÌÅÍ¸¦ ²¨³¿
+	T Dequeue() {  //íì—ì„œ ë°ì´í„°ë¥¼ êº¼ëƒ„
 		if (IsEmpty() == true)
 			return -1;
 		front = (front + 1) % QUEUE_SIZE;
 		
 		return arr[front];
 	}
-	T Peek() {  //ÃÖ»ó´Ü µ¥ÀÌÅÍ¸¦ È®ÀÎ
+	T Peek() {  //ìµœìƒë‹¨ ë°ì´í„°ë¥¼ í™•ì¸
 		return arr[front];
 	}
 	~CircularQueue() {
