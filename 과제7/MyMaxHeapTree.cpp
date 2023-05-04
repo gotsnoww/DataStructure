@@ -58,5 +58,23 @@ void Max_Heap_Insert(int* heap, int* h_size, int key) {
 //최대 힙 트리 삭제 함수
 int Max_Heap_Remove(int* heap, int* h_size)
 {
+	int deleted_key = heap[1]; //루트 노드의 key 값 저장
+	heap[1] = heap[*h_size]; //루트 노드에 마지막 노드 값 저장
+	*h_size = *h_size - 1;
+	int parent = 1;
+	int index = 2;
+	
+	int temp;
+	while (index <= *h_size) {
+		if ((index < *h_size) && (heap[index + 1] > heap[index]))
+			index += 1; //오른쪽 자식이 더 클 경우 오른쪽 자식으로 변경
+		if (heap[parent] >= heap[index]) break; //부모가 자식보다 클 경우 종료
+		temp = heap[parent]; //부모 자식 swap
+		heap[parent] = heap[index];
+		heap[index] = temp;
+		parent = index; //부모 값 업데이트
+		index *= 2; //자식으로 이동
+	}
 
+	return deleted_key;
 }
