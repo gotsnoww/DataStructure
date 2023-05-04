@@ -51,7 +51,7 @@ void PrintAncestor(int* bTree, int size, int idx) {
 		printf("%d ", bTree[p]);
 	}
 	printf("\n");
-}
+} //왼쪽 후손 노드 출력 함수
 void PrintLeftDescendant(int* bTree, int size, int idx) {
 	printf("%d의 모든 왼쪽 후손 노드: ", bTree[idx]);
 
@@ -63,7 +63,7 @@ void PrintLeftDescendant(int* bTree, int size, int idx) {
 		printf("%d ", bTree[ls]);
 	}
 	printf("\n");
-}
+} //오른쪽 후손 노드 출력 함수
 void PrintRightDescendant(int* bTree, int size, int idx) {
 	printf("%d의 모든 오른쪽 후손 노드: ", bTree[idx]);
 	int height = log2(size + 1);
@@ -74,7 +74,7 @@ void PrintRightDescendant(int* bTree, int size, int idx) {
 		printf("%d ", bTree[rs]);
 	}
 	printf("\n");
-}
+} //노드의 index를 탐색하는 함수
 int FindNode(int* bTree, int size, int data) {
 	int temp = 0;
 	for (int i = 1; i <= size; i++) {
@@ -98,3 +98,13 @@ int main() {
 
 	return 0;
 }
+
+
+- 과제에 대한 고찰
+트리라는 자료구조에 대하여 배워보았다. 기존에 트리라는 자료구조에 대해서는 어느정도 알고 있었지만,
+이렇게 자세히 배운 것은 처음이었다. 트리의 노드별 관계와 용어, 서브트리, 이진트리 등 이러한 것들을
+배우고 이를 과제와 접목시켜 수행하였다.
+과제로 진행한 트리는 완전 이진 트리이다. 이 트리의 조상, 후손 노드를 구하는 함수들을 구현하고
+특정 노드의 인덱스를 찾는 함수를 구현하였다. 이렇게 구현된 코드의 수행시간은 트리의 높이에 따라 결정된다.
+따라서 수행시간은 O(logn)이 되겠다. 수행공간은 트리의 크기에 비례할 것이다.
+각 함수를 살펴보면 트리의 높이를 구하고 높이만큼 반복문을 수행하여 노드를 찾아낸다.
