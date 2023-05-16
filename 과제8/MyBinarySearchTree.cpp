@@ -43,7 +43,7 @@ BT_Node* BST_Search(BT_Node* root, int target) {
 	if (target < root->data) //재귀 방식
 		return BST_Search(root->left, target);
 	else
-		return BST_Search(root->left, target);
+		return BST_Search(root->right, target);
 }
 void BST_Insert(BT_Node** root, int key) {
 	BT_Node* newNode = BST_Create_Node(key);
@@ -113,19 +113,19 @@ void BST_Delete(BT_Node** root, int key) {
 		while (successor->left != NULL) {
 			pSuccessor = successor;
 			successor = successor->left; //왼쪽 서브트리로 이동
-			delNode->data = successor->data; //대체 노드의 키 값을 복사
 		}
-		if (pSuccessor->left = successor)
+		delNode->data = successor->data; //대체 노드의 키 값을 복사
+		if (pSuccessor->left == successor)
 			pSuccessor->left = successor->right;
 		else
 			pSuccessor->right = successor->right;
 		delNode = successor;
 	}
-	if (vRoot->right != *root){ //루트노드가 변경되었다면, 새로운 루트노드 정보를 업데이트
+
+	if (vRoot->right != *root) //루트노드가 변경되었다면, 새로운 루트노드 정보를 업데이트
 		*root = vRoot->right;
-		BST_Destroy_Node(vRoot);
-		BST_Destroy_Node(delNode);
-	}
+	BST_Destroy_Node(vRoot);
+	BST_Destroy_Node(delNode);
 }
 
 //출력 관련 함수
