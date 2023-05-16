@@ -4,19 +4,19 @@
 #include <cstdlib>
 using namespace std;
 
-BT_Node* BT_Create_Node(int newData) { //³ëµå »ý¼º
+BT_Node* BT_Create_Node(int newData) { //ë…¸ë“œ ìƒì„±
 	BT_Node* newNode = (BT_Node*)malloc(sizeof(BT_Node));
 	newNode->data = newData;
 	newNode->left = NULL;
 	newNode->right = NULL;
 	return newNode;
 }
-void BT_Destroy_Node(BT_Node* node) { //³ëµå ¼Ò¸ê
+void BT_Destroy_Node(BT_Node* node) { //ë…¸ë“œ ì†Œë©¸
 	if (node != NULL)
 		free(node);
 }
 
-//BST °ü·Ã ÇÔ¼ö
+//BST ê´€ë ¨ í•¨ìˆ˜
 int BST_Min(BT_Node* root) {
 	if (root == NULL)
 		exit(1);
@@ -40,7 +40,7 @@ BT_Node* BST_Search(BT_Node* root, int target) {
 		return NULL;
 	if (target == root->data)
 		return root;
-	if (target < root->data) //Àç±Í ¹æ½Ä
+	if (target < root->data) //ìž¬ê·€ ë°©ì‹
 		return BST_Search(root->left, target);
 	else
 		return BST_Search(root->left, target);
@@ -55,7 +55,7 @@ void BST_Insert(BT_Node** root, int key) {
 		BT_Node* iter = *root;
 		while (iter != NULL) {
 			parent = iter;
-			if (key == iter->data) return; //Áßº¹°ª Çã¿ë X
+			if (key == iter->data) return; //ì¤‘ë³µê°’ í—ˆìš© X
 			if (key < iter->data) 
 				iter = iter->left;
 			else 
@@ -84,7 +84,7 @@ void BST_Delete(BT_Node** root, int key) {
 		exit(1);
 	BT_Node* delNode = iter;
 
-	//case 1: ´Ü¸» ³ëµå »èÁ¦
+	//case 1: ë‹¨ë§ ë…¸ë“œ ì‚­ì œ
 	if (delNode->left == NULL && delNode->right == NULL) {
 		if (parent->left == delNode)
 			parent->left = NULL;
@@ -92,7 +92,7 @@ void BST_Delete(BT_Node** root, int key) {
 			parent->right = NULL;
 	}
 
-	//case 2: ÇÏ³ªÀÇ ¼­ºê Æ®¸®¸¦ °¡Áö´Â ³ëµå¸¦ »èÁ¦
+	//case 2: í•˜ë‚˜ì˜ ì„œë¸Œ íŠ¸ë¦¬ë¥¼ ê°€ì§€ëŠ” ë…¸ë“œë¥¼ ì‚­ì œ
 	else if (delNode->left == NULL || delNode->right == NULL) {
 		BT_Node* child = NULL;
 		if (delNode->left == NULL)
@@ -104,16 +104,16 @@ void BST_Delete(BT_Node** root, int key) {
 		else
 			parent->right = child;
 	}
-	//case 3: µÎ °³ÀÇ ¼­ºê Æ®¸®¸¦ °¡Áö´Â ³ëµå¸¦ »èÁ¦
+	//case 3: ë‘ ê°œì˜ ì„œë¸Œ íŠ¸ë¦¬ë¥¼ ê°€ì§€ëŠ” ë…¸ë“œë¥¼ ì‚­ì œ
 	else {
 		BT_Node* successor = NULL;
 		BT_Node* pSuccessor = NULL;
-		successor = delNode->right; //´ëÃ¼ ³ëµå ÀúÀå
-		pSuccessor = delNode; //´ëÃ¼ ³ëµåÀÇ ºÎ¸ð ³ëµå ÀúÀå
+		successor = delNode->right; //ëŒ€ì²´ ë…¸ë“œ ì €ìž¥
+		pSuccessor = delNode; //ëŒ€ì²´ ë…¸ë“œì˜ ë¶€ëª¨ ë…¸ë“œ ì €ìž¥
 		while (successor->left != NULL) {
 			pSuccessor = successor;
-			successor = successor->left; //¿ÞÂÊ ¼­ºêÆ®¸®·Î ÀÌµ¿
-			delNode->data = successor->data; //´ëÃ¼ ³ëµåÀÇ Å° °ªÀ» º¹»ç
+			successor = successor->left; //ì™¼ìª½ ì„œë¸ŒíŠ¸ë¦¬ë¡œ ì´ë™
+			delNode->data = successor->data; //ëŒ€ì²´ ë…¸ë“œì˜ í‚¤ ê°’ì„ ë³µì‚¬
 		}
 		if (pSuccessor->left = successor)
 			pSuccessor->left = successor->right;
@@ -121,14 +121,14 @@ void BST_Delete(BT_Node** root, int key) {
 			pSuccessor->right = successor->right;
 		delNode = successor;
 	}
-	if (vRoot->right != *root){ //·çÆ®³ëµå°¡ º¯°æµÇ¾ú´Ù¸é, »õ·Î¿î ·çÆ®³ëµå Á¤º¸¸¦ ¾÷µ¥ÀÌÆ®
+	if (vRoot->right != *root){ //ë£¨íŠ¸ë…¸ë“œê°€ ë³€ê²½ë˜ì—ˆë‹¤ë©´, ìƒˆë¡œìš´ ë£¨íŠ¸ë…¸ë“œ ì •ë³´ë¥¼ ì—…ë°ì´íŠ¸
 		*root = vRoot->right;
 		BST_Destroy_Node(vRoot);
 		BST_Destroy_Node(delNode);
 	}
 }
 
-//Ãâ·Â °ü·Ã ÇÔ¼ö
+//ì¶œë ¥ ê´€ë ¨ í•¨ìˆ˜
 void BST_TreePrinter(BT_Node* root) {
 	int h = BST_Height(root);
 	int col = (1 << h) - 1;
