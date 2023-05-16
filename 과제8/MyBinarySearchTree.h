@@ -15,14 +15,14 @@ typedef struct BT_Node {
 BT_Node* BST_Create_Node(int newData);
 void BST_Destroy_Node(BT_Node* node);
 
-//BST °ü·Ã ÇÔ¼ö
+//BST Â°Ã¼Â·Ãƒ Ã‡Ã”Â¼Ã¶
 int BST_Min(BT_Node* root);
 int BST_Max(BT_Node* root);
 BT_Node* BST_Search(BT_Node* root, int target);
 void BST_Insert(BT_Node** root, int key);
 void BST_Delete(BT_Node** root, int key);
 
-//Ãâ·Â °ü·Ã ÇÔ¼ö
+//ÃƒÃ¢Â·Ã‚ Â°Ã¼Â·Ãƒ Ã‡Ã”Â¼Ã¶
 void BST_PrintTree2Matrix(int** M, BT_Node* bt_node, int col, int row, int height);
 void BST_TreePrinter(BT_Node* root);
 int BST_Height(BT_Node* root);
