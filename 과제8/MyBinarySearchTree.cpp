@@ -4,14 +4,14 @@
 #include <cstdlib>
 using namespace std;
 
-BT_Node* BT_Create_Node(int newData) { //노드 생성
+BT_Node* BST_Create_Node(int newData) { //노드 생성
 	BT_Node* newNode = (BT_Node*)malloc(sizeof(BT_Node));
 	newNode->data = newData;
 	newNode->left = NULL;
 	newNode->right = NULL;
 	return newNode;
 }
-void BT_Destroy_Node(BT_Node* node) { //노드 소멸
+void BST_Destroy_Node(BT_Node* node) { //노드 소멸
 	if (node != NULL)
 		free(node);
 }
