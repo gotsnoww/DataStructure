@@ -6,8 +6,8 @@ void ADJ_Degree(int adj_mat[][MAX_VERTICES], int n) {
 	for (int i = 0; i < n; i++) {
 		int degree = 0;
 		for (int j = 0; j < n; j++)
-			degree = degree + *adj_mat[i, j];
-		printf("정점 %2d의 차수: %2d", i, degree);
+			degree = degree + adj_mat[i][j];
+		printf("정점 %2d의 차수: %2d\n", i, degree);
 	}
 }
 //인접 행렬로 표현된 그래프를 인접 리스트로 변환 함수
@@ -19,8 +19,8 @@ void ADJ_Insert(G_Node** List, int i, int j) {
 }
 void ADJ_Mat2List(int adj_mat[][MAX_VERTICES], int n, G_Node** List) {
 	for (int i = 0; i < n; i++) {
-		for (int j = 0; i < n; j++) {
-			if (*adj_mat[i, j] == 1)
+		for (int j = 0; j < n; j++) {
+			if (adj_mat[i][j] == 1)
 				ADJ_Insert(List, i, j);
 		}
 	}
@@ -30,7 +30,7 @@ void ADJ_Mat2List(int adj_mat[][MAX_VERTICES], int n, G_Node** List) {
 void Graph_DFS(G_Node** List, int v) {
 	ArrStack <int> stack;
 	int current = v;
-	static int visited[MAX_VERTICES] = { 0 };
+	int visited[MAX_VERTICES] = { 0 };
 	visited[current] = 1;
 	printf("%2d", current);
 	do{
@@ -59,10 +59,20 @@ void Graph_DFS(G_Node** List, int v) {
 				current = stack.Stack_Pop();
 		}
 	} while (!stack.Stack_IsEmpty());
+	printf("\n");
 }
 void Graph_DFS_Recursive(G_Node** List, int v) {
-
-}
+	static int visited[MAX_VERTICES] = { 0 };
+	G_Node* iter = List[v];
+	visited[v] = 1;
+	printf("%2d", v);
+	while (iter != NULL) {
+		int temp = iter->vertex;
+		if (visited[temp] == 0) 
+			Graph_DFS_Recursive(List, temp);
+		iter = iter->link;
+	}
+} 
 
 void ADJ_Create(const char* g_file, int adj_mat[][MAX_VERTICES])
 {
