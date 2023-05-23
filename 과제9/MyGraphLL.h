@@ -1,16 +1,16 @@
 #include <iostream>
 #include "MyGraphLL.h"
 
-//±×·¡ÇÁ °¢ Á¤Á¡ÀÇ Â÷¼ö °è»ê ÇÔ¼ö
+//ê·¸ë˜í”„ ê° ì •ì ì˜ ì°¨ìˆ˜ ê³„ì‚° í•¨ìˆ˜
 void ADJ_Degree(int adj_mat[][MAX_VERTICES], int n) {
 	for (int i = 0; i < n; i++) {
 		int degree = 0;
 		for (int j = 0; j < n; j++)
 			degree = degree + adj_mat[i][j];
-		printf("Á¤Á¡ %2dÀÇ Â÷¼ö: %2d\n", i, degree);
+		printf("ì •ì  %2dì˜ ì°¨ìˆ˜: %2d\n", i, degree);
 	}
 }
-//ÀÎÁ¢ Çà·Ä·Î Ç¥ÇöµÈ ±×·¡ÇÁ¸¦ ÀÎÁ¢ ¸®½ºÆ®·Î º¯È¯ ÇÔ¼ö
+//ì¸ì ‘ í–‰ë ¬ë¡œ í‘œí˜„ëœ ê·¸ë˜í”„ë¥¼ ì¸ì ‘ ë¦¬ìŠ¤íŠ¸ë¡œ ë³€í™˜ í•¨ìˆ˜
 void ADJ_Insert(G_Node** List, int i, int j) {
 	G_Node* newNode = (G_Node*)malloc(sizeof(G_Node));
 	newNode->vertex = j;
@@ -25,8 +25,8 @@ void ADJ_Mat2List(int adj_mat[][MAX_VERTICES], int n, G_Node** List) {
 		}
 	}
 }
-//ÀÎÁ¢ ¸®½ºÆ®·Î Ç¥ÇöµÈ ±×·¡ÇÁ¸¦ ¼øÈ¸ÇÏ¿© °¢ Á¤Á¡ ¹æ¹®
-//±íÀÌ ¿ì¼± Å½»ö
+//ì¸ì ‘ ë¦¬ìŠ¤íŠ¸ë¡œ í‘œí˜„ëœ ê·¸ë˜í”„ë¥¼ ìˆœíšŒí•˜ì—¬ ê° ì •ì  ë°©ë¬¸
+//ê¹Šì´ ìš°ì„  íƒìƒ‰
 void Graph_DFS(G_Node** List, int v) {
 	ArrStack <int> stack;
 	int current = v;
@@ -34,13 +34,13 @@ void Graph_DFS(G_Node** List, int v) {
 	visited[current] = 1;
 	printf("%2d", current);
 	do{
-		bool vFlag = false; //¹æ¹® ¿©ºÎ ÀúÀå
-		if (visited[current] == 0) { //¹æ¹® ÇÑÀû ¾ø´Â Á¤Á¡
+		bool vFlag = false; //ë°©ë¬¸ ì—¬ë¶€ ì €ì¥
+		if (visited[current] == 0) { //ë°©ë¬¸ í•œì  ì—†ëŠ” ì •ì 
 			printf("%2d", current);
 			visited[current] = 1;
 			vFlag = true;
 		}
-		else { //¹æ¹® ÇÑÀû ÀÖ´Â Á¤Á¡
+		else { //ë°©ë¬¸ í•œì  ìˆëŠ” ì •ì 
 			G_Node* iter = List[current];
 			while (iter != NULL) {
 				if (visited[iter->vertex] == 0) {
@@ -79,7 +79,7 @@ void ADJ_Create(const char* g_file, int adj_mat[][MAX_VERTICES])
 	FILE* file;
 	fopen_s(&file, g_file, "r"); //read mode
 	if (file == NULL) {
-		printf("ÆÄÀÏÀÌ ¾ø½À´Ï´Ù. ÇÁ·Î±×·¥À» Á¾·áÇÕ´Ï´Ù.");
+		printf("íŒŒì¼ì´ ì—†ìŠµë‹ˆë‹¤. í”„ë¡œê·¸ë¨ì„ ì¢…ë£Œí•©ë‹ˆë‹¤.");
 		return;
 	}
 	while (1) {
