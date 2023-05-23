@@ -5,23 +5,23 @@
 
 #define MAX_VERTICES 100
 
-typedef struct G_Node { //Node ±¸Á¶Ã¼
-	int vertex; //µ¥ÀÌÅÍ ÇÊµå
-	struct G_Node* link; // ´ÙÀ½ ³ëµåÀÇ ÁÖ¼Ò¸¦ ÀúÀå
+typedef struct G_Node { //Node êµ¬ì¡°ì²´
+	int vertex; //ë°ì´í„° í•„ë“œ
+	struct G_Node* link; // ë‹¤ìŒ ë…¸ë“œì˜ ì£¼ì†Œë¥¼ ì €ì¥
 }G_Node;
 
-//0) ÆÄÀÏ¿¡ ÀúÀåµÈ µ¥ÀÌÅÍ·Î ±×·¡ÇÁ ±¸¼º
+//0) íŒŒì¼ì— ì €ì¥ëœ ë°ì´í„°ë¡œ ê·¸ë˜í”„ êµ¬ì„±
 void ADJ_Create(const char* g_file, int adj_mat[][MAX_VERTICES]);
-//1) Á¤Á¡º° Â÷¼ö Ãâ·Â
+//1) ì •ì ë³„ ì°¨ìˆ˜ ì¶œë ¥
 void ADJ_Degree(int adj_mat[][MAX_VERTICES], int n);
-//2) ÀÎÁ¢ Çà·Ä ¡æ ÀÎÁ¢ ¸®½ºÆ® º¯È¯
+//2) ì¸ì ‘ í–‰ë ¬ â†’ ì¸ì ‘ ë¦¬ìŠ¤íŠ¸ ë³€í™˜
 void ADJ_Insert(G_Node** List, int i, int j);
 void ADJ_Mat2List(int adj_mat[][MAX_VERTICES], int n, G_Node** List);
-//3) ±íÀÌ ¿ì¼± Å½»ö
+//3) ê¹Šì´ ìš°ì„  íƒìƒ‰
 void Graph_DFS(G_Node** List, int v);
 void Graph_DFS_Recursive(G_Node** List, int v);
 
-//Ãâ·ÂÇÔ¼ö ¸ğÀ½
+//ì¶œë ¥í•¨ìˆ˜ ëª¨ìŒ
 void ADJ_Print_Array(int adj_mat[][MAX_VERTICES], int n);
 void ADJ_Print_List(G_Node** List, int n);
 #endif
