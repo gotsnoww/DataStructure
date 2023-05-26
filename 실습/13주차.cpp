@@ -51,7 +51,7 @@ void Insert(Tree* tree, int data) {
 	}
 
 	if (Search(tree, data)) {
-		printf("Áßº¹!!!\n");
+		printf("ì¤‘ë³µ!!!\n");
 		return;
 	}
 	else {
@@ -72,21 +72,23 @@ void Display(Node* root) {
 	}
 }
 
-void Delete(Tree* tree, int data) { //°úÁ¦: ÃÑ 4°¡Áö °æ¿ì
-	//»èÁ¦ÇÏ°íÀÚ ÇÏ´Â °ªÀÌ ¾ø´Â °æ¿ì - search ÇÔ¼ö È°¿ë
-		
+void Delete(Tree* tree, int data) { //ê³¼ì œ: ì´ 4ê°€ì§€ ê²½ìš°
+	//ì‚­ì œí•˜ê³ ìž í•˜ëŠ” ê°’ì´ ì—†ëŠ” ê²½ìš°
+	if (Search(tree, data) == 0) {
+		printf("ì‚­ì œí•˜ê³ ìž í•˜ëŠ” ê°’ì´ ì—†ìŠµë‹ˆë‹¤!!\n");
+	}	
 
-	// »èÁ¦ÇÏ°íÀÚ ÇÒ ³ëµåÀÇ ÀÚ½ÄÀÌ ¾ø´Â °æ¿ì
+	// ì‚­ì œí•˜ê³ ìž í•  ë…¸ë“œì˜ ìžì‹ì´ ì—†ëŠ” ê²½ìš°
 	if (tree->cur->Lnode == NULL && tree->cur->Rnode == NULL) {
 		Ch_No(tree);
 	}
 
-	//»èÁ¦ÇÏ°íÀÚ ÇÒ ³ëµåÀÇ ÀÚ½ÄÀÌ ÇÏ³ª¸¸ ÀÖ´Â °æ¿ì
+	//ì‚­ì œí•˜ê³ ìž í•  ë…¸ë“œì˜ ìžì‹ì´ í•˜ë‚˜ë§Œ ìžˆëŠ” ê²½ìš°
 	else if (tree->cur->Lnode == NULL || tree->cur->Rnode == NULL) {
 		Ch_One(tree);
 	}
 
-	//»èÁ¦ÇÏ°íÀÚ ÇÒ ³ëµåÀÇ ÀÚ½ÄÀÌ µÑÀÎ°æ¿ì
+	//ì‚­ì œí•˜ê³ ìž í•  ë…¸ë“œì˜ ìžì‹ì´ ë‘˜ì¸ê²½ìš°
 	else if (tree->cur->Lnode != NULL && tree->cur->Rnode != NULL) {
 		Ch_Two(tree);
 	}
@@ -118,13 +120,13 @@ void main() {
 }
 
 /*
-»èÁ¦
+ì‚­ì œ
 
-ÀÚ½Ä³ëµå°¡ 0°³ÀÎ °æ¿ì
-ÀÌÁøÅ½»öÆ®¸®¿¡¼­ ³ëµå°¡ ÇÏ³ª¸¸ ³²¾ÆÀÖÀ» °æ¿ì(·çÆ®³ëµå)
+ìžì‹ë…¸ë“œê°€ 0ê°œì¸ ê²½ìš°
+ì´ì§„íƒìƒ‰íŠ¸ë¦¬ì—ì„œ ë…¸ë“œê°€ í•˜ë‚˜ë§Œ ë‚¨ì•„ìžˆì„ ê²½ìš°(ë£¨íŠ¸ë…¸ë“œ)
 
-ÀÚ½Ä³ëµå°¡ 1°³ÀÎ °æ¿ì
-·çÆ®³ëµå°¡ ÀÚ½Ä³ëµå 1°³¸¦ °¡Áö°í ÀÖÀ» °æ¿ì ·çÆ®³ëµå »èÁ¦?
+ìžì‹ë…¸ë“œê°€ 1ê°œì¸ ê²½ìš°
+ë£¨íŠ¸ë…¸ë“œê°€ ìžì‹ë…¸ë“œ 1ê°œë¥¼ ê°€ì§€ê³  ìžˆì„ ê²½ìš° ë£¨íŠ¸ë…¸ë“œ ì‚­ì œ?
 
-Àç±ÍÇÔ¼ö
+ìž¬ê·€í•¨ìˆ˜
 */
