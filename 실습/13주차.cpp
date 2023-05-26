@@ -94,6 +94,16 @@ void Delete(Tree* tree, int data) { //과제: 총 4가지 경우
 	}
 }
 
+void Ch_No(Tree* tree) {
+
+}
+void Ch_One(Tree* tree) {
+
+}
+void Ch_Two(Tree* tree) {
+
+}
+
 void main() {
 	Tree tree;
 	tree.root = NULL;
