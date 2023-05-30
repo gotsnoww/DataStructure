@@ -24,4 +24,4 @@ int main()
 	ADJ_Print_Array(MST, num_of_ver); //MST 행렬 출력
 
 	return 0;
-}
+}

@@ -42,9 +42,11 @@ void ADJ_Print_Array(int weight_mat[][MAX_VERTICES], int n) {
 }
 //프림 알고리즘 기반 최소비용 신장트리
 void MST_Prim(int weight_mat[][MAX_VERTICES], int MST[][MAX_VERTICES], int n) {
-	int selected[MAX_VERTICES] = { 0 }; //MST에 선택된 정점 표시
-	int edge_count = 0; //간선 개수 저장
+	int* selected = new int[n]; //MST에 선택된 정점 표시
+	for (int i = 0; i < n; i++)
+		selected[i] = 0;
 	selected[0] = 1;
+	int edge_count = 0; //간선 개수 저장
 	while (edge_count < (n - 1)) {
 		int min = INT_MAX;
 		int u = 0;
