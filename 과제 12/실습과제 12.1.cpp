@@ -10,21 +10,25 @@ int main()
 {
 	int random_data[] = { 27, 4, 37, 2, 62, 12, 59, 16, 49, 18 };
 	int size = sizeof(random_data) / sizeof(int);
-	printf("ì •ë ¬ ì „ ë°ì´í„°: ");
+	printf("Á¤·Ä Àü µ¥ÀÌÅÍ: ");
+
 	for (int i = 0; i < size; i++) { printf("%d ", random_data[i]); }
 	int result = Seq_Search(random_data, 49, size);
-	printf("\n\n##ìˆœì°¨ íƒìƒ‰##\n");
-	if (result != -1) printf("ê°’ %dëŠ” %d ë²ˆì§¸ì— ì¡´ì¬í•©ë‹ˆë‹¤.\n\n", random_data[result], result);
-	Quick_Sort(random_data, 0, size - 1); //11.2 ì°¸ê³ 
-	printf("ì •ë ¬ í›„ ë°ì´í„°: ");
+	printf("\n\n##¼øÂ÷ Å½»ö##\n");
+
+	if (result != -1) printf("°ª %d´Â %d ¹øÂ°¿¡ Á¸ÀçÇÕ´Ï´Ù.\n\n", random_data[result], result);
+	Quick_Sort(random_data, 0, size - 1);
+	printf("Á¤·Ä ÈÄ µ¥ÀÌÅÍ: ");
 	for (int i = 0; i < size; i++) { printf("%d ", random_data[i]); }
-	printf("\n\n##ì´ì§„ íƒìƒ‰##\n");
+	printf("\n\n##ÀÌÁø Å½»ö##\n");
+
 	int key = 52;
 	result = Bin_Search(random_data, key, size);
-	if (result == -1) printf("%d ê°’ì€ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.\n", key);
+	if (result == -1) printf("%d °ªÀº Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.\n", key);
 	key = 37;
 	result = Bin_Search(random_data, key, size);
-	if (result != -1) printf("ê°’ %dëŠ” %d ë²ˆì§¸ì— ì¡´ì¬í•©ë‹ˆë‹¤.\n", key, result);
+	if (result != -1) printf("°ª %d´Â %d ¹øÂ°¿¡ Á¸ÀçÇÕ´Ï´Ù.\n", key, result);
+
 	return 0;
 }
 
@@ -42,13 +46,13 @@ void Quick_Sort(int* random_data, int left, int right) {
 	}
 }
 int Partition(int* random_data, int left, int right) {
-	int low = left + 1; //ì œì¼ ì™¼ìª½ ë°ì´í„°ëŠ” pivotìœ¼ë¡œ í™œìš©
+	int low = left + 1; //Á¦ÀÏ ¿ŞÂÊ µ¥ÀÌÅÍ´Â pivotÀ¸·Î È°¿ë
 	int high = right;
 	int pivot = random_data[left]; 
 	while (low <= high) {
-		while (random_data[high] > pivot) //pivotë³´ë‹¤ ì‘ì€ ê°’ íƒìƒ‰
+		while (random_data[high] > pivot) //pivotº¸´Ù ÀÛÀº °ª Å½»ö
 			high -= 1;
-		while ((low <= high) && (random_data[low] <= pivot)) //pivotë³´ë‹¤ í° ê°’ íƒìƒ‰
+		while ((low <= high) && (random_data[low] <= pivot)) //pivotº¸´Ù Å« °ª Å½»ö
 			low += 1;
 		if (low <= high) {
 			swap(&random_data[low], &random_data[high]);
@@ -56,14 +60,14 @@ int Partition(int* random_data, int left, int right) {
 			high -= 1;
 		}
 	}
-	//pivot ê°’ê³¼ high ê°’ êµí™˜
+	//pivot °ª°ú high °ª ±³È¯
 	swap(&random_data[left], &random_data[high]);
 	return high;
 }
 int Seq_Search(int* random_data, int key, int n) {
 	for (int i = 0; i < n; i++) {
 		if (key == random_data[i])
-			return i;
+			return i; //Ã£°íÀÚÇÏ´Â µ¥ÀÌÅÍÀÇ À§Ä¡ ¹İÈ¯
 	}
 	return NULL;
 }
@@ -72,9 +76,9 @@ int Bin_Search(int* random_data, int key, int n) {
 	int right = n - 1;
 	while (left <= right) {
 		int mid = (left + right) / 2;
-		if (key == random_data[mid]) return mid;
-		if (key > random_data[mid]) left = mid + 1;
-		else right = mid - 1;
+		if (key == random_data[mid]) return mid; //Ã£°íÀÚÇÏ´Â µ¥ÀÌÅÍÀÇ À§Ä¡ ¹İÈ¯
+		if (key > random_data[mid]) left = mid + 1; //¿À¸¥ÂÊ ¿µ¿ªÀ¸·Î ÇÑÁ¤
+		else right = mid - 1; //¿ŞÂÊ ¿µ¿ªÀ¸·Î ÇÑÁ¤
 	}
 	return -1;
 }
