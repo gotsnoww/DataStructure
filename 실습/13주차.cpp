@@ -72,11 +72,54 @@ void Display(Node* root) {
 	}
 }
 
+void Ch_No(Tree* tree) {
+	if (tree->parent == NULL) {
+		// 삭제할 노드가 루트 노드인 경우
+		tree->root = NULL;
+	}
+	else if (tree->parent->Lnode == tree->cur) {
+		tree->parent->Lnode = NULL;
+	}
+	else {
+		tree->parent->Rnode = NULL;
+	}
+}
+void Ch_One(Tree* tree) {
+	if (tree->cur->Lnode == NULL)
+		tree->child = tree->cur->Rnode;
+	else
+		tree->child = tree->cur->Lnode;
+
+	if (tree->parent->Lnode == tree->cur)
+		tree->parent->Lnode = tree->child;
+	else
+		tree->parent->Rnode = tree->child;
+}
+void Ch_Two(Tree* tree) {
+	//삭제할 노드의 오른쪽 서브트리 탐색
+	Node* delnode = tree->cur;
+	tree->cur = tree->cur->Rnode;
+
+	while (tree->cur->Lnode != NULL) {
+		tree->parent = tree->cur;
+		tree->cur = tree->cur->Lnode;
+	}
+	delnode->key = tree->cur->key;
+
+	if (tree->parent != NULL) { //삭제할 노드가 루트노드가 아닐 경우
+		if (tree->parent->Lnode == tree->cur)
+			tree->parent->Lnode = tree->cur->Rnode;
+		else
+			tree->parent->Rnode = tree->cur->Rnode;
+	}
+}
+
 void Delete(Tree* tree, int data) { //과제: 총 4가지 경우
 	//삭제하고자 하는 값이 없는 경우
 	if (Search(tree, data) == 0) {
 		printf("삭제하고자 하는 값이 없습니다!!\n");
-	}	
+		return;
+	}
 
 	// 삭제하고자 할 노드의 자식이 없는 경우
 	if (tree->cur->Lnode == NULL && tree->cur->Rnode == NULL) {
@@ -92,16 +135,10 @@ void Delete(Tree* tree, int data) { //과제: 총 4가지 경우
 	else if (tree->cur->Lnode != NULL && tree->cur->Rnode != NULL) {
 		Ch_Two(tree);
 	}
-}
 
-void Ch_No(Tree* tree) {
-
-}
-void Ch_One(Tree* tree) {
-
-}
-void Ch_Two(Tree* tree) {
-
+	Node* temp = tree->cur; // 삭제된 노드의 주소를 임시로 저장
+	tree->cur = NULL; // tree->cur을 NULL로 초기화
+	free(temp); // 임시로 저장한 주소의 노드를 해제}
 }
 
 void main() {
@@ -111,32 +148,18 @@ void main() {
 	tree.parent = NULL;
 	tree.child = NULL;
 
-	Insert(&tree, 15);
-	Insert(&tree, 18);
-	Insert(&tree, 10);
-	Insert(&tree, 100);
-	Insert(&tree, 19);
-	Insert(&tree, 11);
-	Insert(&tree, 1);
-	Insert(&tree, 16);
-	Insert(&tree, 4);
-	Insert(&tree, 8);
-	Insert(&tree, 3);
-	Insert(&tree, 9);
+	Insert(&tree, 50);
+	Insert(&tree, 35);
+	Insert(&tree, 70);
+	Insert(&tree, 6);
+	Insert(&tree, 40);
+	Insert(&tree, 36);
+	Insert(&tree, 45);
+	Insert(&tree, 38);
+	Insert(&tree, 37);
 
 	Display(tree.root);
-
-	Delete(&tree, 10);
+	printf("\n");
+	Delete(&tree, 50);
+	Display(tree.root);
 }
-
-/*
-삭제
-
-자식노드가 0개인 경우
-이진탐색트리에서 노드가 하나만 남아있을 경우(루트노드)
-
-자식노드가 1개인 경우
-루트노드가 자식노드 1개를 가지고 있을 경우 루트노드 삭제?
-
-재귀함수
-*/
